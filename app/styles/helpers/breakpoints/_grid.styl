@@ -1,0 +1,140 @@
+$col-style
+  position relative
+  padding-x ($grid-gutter / 2)
+  width 100%
+  min-height 1px
+
+grid-make_col(colSize, gridColNum = $grid-columns)
+  flex 0 0 percentage(colSize / gridColNum)
+  max-width percentage(colSize / gridColNum)
+
+grid-make_col-offset(colSize, gridColNum = $grid-columns)
+  margin-left percentage(colSize / gridColNum)
+
+grid-set_col-style()
+  & > .col,
+  & > [class*=col-]
+    {block}
+
+.grid
+  margin ($grid-gutter / 2) * -1
+  display flex
+  flex-wrap wrap
+
+  +grid-set_col-style()
+    padding ($grid-gutter / 2)
+
+  & + .grid
+    margin-top ($grid-gutter / 2)
+
+  &_margin
+
+    &-x
+      margin-y 0
+
+    &-y
+      margin-x 0
+
+    &-xy
+      margin 0
+
+  &_gutters
+
+    &-x
+      margin-y 0
+
+      +grid-set_col-style()
+        padding-y 0
+
+    &-y
+      margin-x 0
+
+      +grid-set_col-style()
+        padding-x 0
+
+    &-xy
+      margin 0
+
+      +grid-set_col-style()
+        padding 0
+
+for key, value in $breakpoints
+  .col,
+  .col-auto
+    @extends $col-style
+
+  for $i in (1..$grid-columns)
+    .col-{$i}
+      @extends $col-style
+
+  .col-{key}-auto
+    @extends $col-style
+
+  for $i in (1..$grid-columns)
+    .col-{key}-{$i}
+      @extends $col-style
+
+.col
+  flex-basis 0
+  flex-grow 1
+  max-width 100%
+
+.col-auto
+  flex 0 0 auto
+  width auto
+
+for $i in (1..$grid-columns)
+  .col-{$i}
+    grid-make_col($i, $grid-columns)
+
+for $i in (1..($grid-columns - 1))
+  .col
+    &_offset-{$i}
+      grid-make_col-offset($i, $grid-columns)
+
+.col
+  &_order
+
+    &-first
+      order -1
+
+    &-last
+      order 1
+
+    &-no
+      order 0
+
+for key, value in $breakpoints
+  +media(value)
+    .col-{key}
+      flex-basis 0
+      flex-grow 1
+      max-width 100%
+
+    .col-{key}-auto
+      flex 0 0 auto
+      width auto
+
+    for $i in (1..$grid-columns)
+      .col-{key}-{$i}
+        grid-make_col($i, $grid-columns)
+
+    for $i in (1..($grid-columns - 1))
+      .col_offset-{key}-{$i}
+        grid-make_col-offset($i, $grid-columns)
+
+    .col
+      &_order-{key}-first
+        order -1
+
+      &_order-{key}-last
+        order 1
+
+      &_order-{key}-no
+        order 0
+
+for key, value in $breakpoints
+  +media(value, 'max')
+
+    .hidden-after-{key}
+      display none

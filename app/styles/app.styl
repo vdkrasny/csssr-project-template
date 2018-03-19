@@ -1,8 +1,20 @@
 import('sprites/*')
 import('helpers/svg-size')
-@import 'helpers/variables'
-@import 'helpers/mixins'
-@import 'helpers/fonts'
-@import 'helpers/optimize'
+@import 'helpers/variables.styl'
+@import 'helpers/mixins.styl'
+@import 'helpers/fonts.styl'
+@import 'helpers/optimize.styl'
 
+html
+  font-family $app-font-family
+  font-size $app-font-size
+
+body
+  font-weight $app-font-weight
+  line-height $app-line-height
+  color $app-color
+  background-color $app-bg-color
+
+@import 'helpers/breakpoints/init.styl'
+import('../blocks/include/**/*')
 import('../blocks/**/*')
