@@ -6,15 +6,19 @@ import('helpers/svg-size')
 @import 'helpers/optimize.styl'
 
 html
-  font-family $app-font-family
-  font-size $app-font-size
+	font-family $app-font-family
+	font-size $app-font-size
 
 body
-  font-weight $app-font-weight
-  line-height $app-line-height
-  color $app-color
-  background-color $app-bg-color
+	font-weight $app-font-weight
+	line-height $app-line-height
+	color $app-color
+	background-color $app-bg-color
 
-@import 'helpers/breakpoints/init.styl'
-import('../blocks/include/**/*')
-import('../blocks/**/*')
+@import 'helpers/breakpoints/init.styl' // example uses of complex helpers
+
+import('../blocks/include/**/*') // folder with css of plugins
+
+import('../blocks/ui/**/*') // UI that is standalone unit
+
+import('../blocks/widgets/**/*') // widgets is what combines the UI on page

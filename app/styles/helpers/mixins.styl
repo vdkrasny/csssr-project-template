@@ -1,10 +1,10 @@
 // calculate em in px
 em($pixels, $font-size)
-  return unit(round($pixels / $font-size, 4), 'em')
+	return unit(round($pixels / $font-size, 4), 'em')
 
 // calculate rem in px
 rem($pixels, $default = $app-font-size)
-  return unit(round($pixels / $default, 4), 'rem')
+	return unit(round($pixels / $default, 4), 'rem')
 
 // Clear the float on any element.
 clearfix()
@@ -19,26 +19,26 @@ fix-text-size-adjust()
 
 // Custom styles for placeholders in all browsers
 placeholder-style()
-  &::-webkit-input-placeholder
-    {block}
-  &::-moz-placeholder
-    {block}
-  &:-moz-placeholder
-    {block}
-  &:-ms-input-placeholder
-    {block}
+	&::-webkit-input-placeholder
+		{block}
+	&::-moz-placeholder
+		{block}
+	&:-moz-placeholder
+		{block}
+	&:-ms-input-placeholder
+		{block}
 
 // Centering content through a position.
 // The parent must have a style `position: relative;`
 position-center($index = null)
-  position absolute
-  if $index != null
-    z-index $index
-  top 0
-  right 0
-  left 0
-  bottom 0
-  margin auto
+	position absolute
+	if $index != null
+		z-index $index
+	top 0
+	right 0
+	left 0
+	bottom 0
+	margin auto
 
 // Set element size
 size($width, $height = $width)
@@ -47,8 +47,8 @@ size($width, $height = $width)
 
 // Set margin on left & right
 margin-x($margin)
-	margin-left $margin
 	margin-right $margin
+	margin-left $margin
 
 // Set margin on top & bottom
 margin-y($margin)
@@ -57,8 +57,8 @@ margin-y($margin)
 
 // Set pading on left & right
 padding-x($padding)
-	padding-left $padding
 	padding-right $padding
+	padding-left $padding
 
 // Set padding on top & bottom
 padding-y($padding)

@@ -1,162 +1,161 @@
 make-col(colIndex, colQuantity = $grid-columns)
-  flex 0 0 percentage(colIndex / colQuantity)
-  max-width percentage(colIndex / colQuantity)
+	flex 0 0 percentage(colIndex / colQuantity)
+	max-width percentage(colIndex / colQuantity)
 
 make-col-offset(colIndex, colQuantity = $grid-columns)
-  margin-left percentage(colIndex / colQuantity)
+	margin-left percentage(colIndex / colQuantity)
 
 set-col-style()
-  & > .col,
-  & > [class*=col-]
-    {block}
+	& > .col,
+	& > [class*=col-]
+		{block}
 
 .grid
-  margin ($grid-gutter / 2) * -1
-  display flex
-  flex-wrap wrap
+	margin ($grid-gutter / 2) * -1
+	display flex
+	flex-wrap wrap
 
-  &:not(.grid_gutters-x):not(.grid_gutters-xy) + .grid
-    margin-top ($grid-gutter / 2)
+	&:not(.grid_gutters-x):not(.grid_gutters-xy) + .grid
+		margin-top ($grid-gutter / 2)
 
-  +set-col-style()
-    padding ($grid-gutter / 2)
+	+set-col-style()
+		padding ($grid-gutter / 2)
 
-  &_content
-    &-start
-      justify-content flex-start
-    &-center
-      justify-content center
-    &-end
-      justify-content flex-end
-    &-around
-      justify-content space-around
-    &-between
-      justify-content space-between
+	&_content
+		&-start
+			justify-content flex-start
+		&-center
+			justify-content center
+		&-end
+			justify-content flex-end
+		&-around
+			justify-content space-around
+		&-between
+			justify-content space-between
 
-  &_items
-    &-start
-      align-items flex-start
-    &-center
-      align-items center
-    &-end
-      align-items flex-end
+	&_items
+		&-start
+			align-items flex-start
+		&-center
+			align-items center
+		&-end
+			align-items flex-end
 
-  &_reverse
-    flex-direction row-reverse
+	&_reverse
+		flex-direction row-reverse
 
-  &_gutters
-    &-x
-      margin-y 0
-      +set-col-style()
-        padding-y 0
-    &-y
-      margin-x 0
-      +set-col-style()
-        padding-x 0
-    &-xy
-      margin 0
-      +set-col-style()
-        padding 0
-
+	&_gutters
+		&-x
+			margin-y 0
+			+set-col-style()
+				padding-y 0
+		&-y
+			margin-x 0
+			+set-col-style()
+				padding-x 0
+		&-xy
+			margin 0
+			+set-col-style()
+				padding 0
 .col,
 .col-auto
-  position relative
-  padding-x ($grid-gutter / 2)
-  width 100%
-  min-height 1px
+	position relative
+	padding-x ($grid-gutter / 2)
+	width 100%
+	min-height 1px
 
 for key, value in $breakpoints
 
-  for $i in (1..$grid-columns)
-    .col-{$i}
-      @extends .col
+	for $i in (1..$grid-columns)
+		.col-{$i}
+			@extends .col
 
-  .col-{key}
-  .col-{key}-auto
-    @extends .col
+	.col-{key}
+	.col-{key}-auto
+		@extends .col
 
-  for $i in (1..$grid-columns)
-    .col-{key}-{$i}
-      @extends .col
+	for $i in (1..$grid-columns)
+		.col-{key}-{$i}
+			@extends .col
 
 .col
-  flex-basis 0
-  flex-grow 1
-  max-width 100%
+	flex-basis 0
+	flex-grow 1
+	max-width 100%
 
 .col-auto
-  flex 0 0 auto
-  width auto
+	flex 0 0 auto
+	width auto
 
 for $i in (1..$grid-columns)
-  .col-{$i}
-    make-col($i)
+	.col-{$i}
+		make-col($i)
 
 for $i in (1..($grid-columns - 1))
-  .col
-    &-offset-{$i}
-      make-col-offset($i)
+	.col
+		&-offset-{$i}
+			make-col-offset($i)
 
 for key, value in $breakpoints
-  +media(value)
+	+media(value)
 
-    .grid
-      &_content-{key}
-        &-start
-          justify-content flex-start
-        &-center
-          justify-content center
-        &-end
-          justify-content flex-end
-        &-around
-          justify-content space-around
-        &-between
-          justify-content space-between
+		.grid
+			&_content-{key}
+				&-start
+					justify-content flex-start
+				&-center
+					justify-content center
+				&-end
+					justify-content flex-end
+				&-around
+					justify-content space-around
+				&-between
+					justify-content space-between
 
-      &_items-{key}
-        &-start
-          align-items flex-start
-        &-center
-          align-items center
-        &-end
-          align-items flex-end
+			&_items-{key}
+				&-start
+					align-items flex-start
+				&-center
+					align-items center
+				&-end
+					align-items flex-end
 
-      &_reverse-{key}
-        flex-direction row-reverse
+			&_reverse-{key}
+				flex-direction row-reverse
 
-      &_gutters-{key}
-        &-x
-          margin-y 0
-          +set-col-style()
-            padding-y 0
-        &-y
-          margin-x 0
-          +set-col-style()
-            padding-x 0
-        &-xy
-          margin 0
-          +set-col-style()
-            padding 0
+			&_gutters-{key}
+				&-x
+					margin-y 0
+					+set-col-style()
+						padding-y 0
+				&-y
+					margin-x 0
+					+set-col-style()
+						padding-x 0
+				&-xy
+					margin 0
+					+set-col-style()
+						padding 0
 
-    .col-{key}
-      flex-basis 0
-      flex-grow 1
-      max-width 100%
+		.col-{key}
+			flex-basis 0
+			flex-grow 1
+			max-width 100%
 
-    .col-{key}-auto
-      flex 0 0 auto
-      width auto
+		.col-{key}-auto
+			flex 0 0 auto
+			width auto
 
-    for $i in (1..$grid-columns)
-      .col-{key}-{$i}
-        make-col($i)
+		for $i in (1..$grid-columns)
+			.col-{key} -{$i}
+				make-col($i)
 
-    for $i in (1..($grid-columns - 1))
-      .col-offset-{key}-{$i}
-        make-col-offset($i)
+		for $i in (1..($grid-columns - 1))
+			.col-offset-{key} -{$i}
+				make-col-offset($i)
 
 for key, value in $breakpoints
-  +media(value, 'max')
+	+media(value, 'max')
 
-    .hidden-after-{key}
-      display none
+		.hidden-after-{key}
+			display none
