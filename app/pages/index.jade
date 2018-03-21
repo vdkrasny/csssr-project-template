@@ -1,6 +1,10 @@
 extends ../blocks/layout/default/default
 
 block head
-	- var pageTitle = 'CSSSR Project Template';
+	- var pageTitle = 'Навигация по проекту';
 
 block content
+	h2=pageTitle + ':'
+	ul
+		li
+			a(href='main.html') Главная
